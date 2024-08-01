@@ -1,13 +1,8 @@
 import axios from 'axios';
+import { Product } from '../types/common';
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  // add more as necessary
-}
 
-const productsAPI = {
+export const productsAPI = {
   getAll: async (): Promise<Product[]> => {
     const response = await axios.get('https://fakestoreapi.com/products');
     return response.data;
@@ -17,5 +12,3 @@ const productsAPI = {
     return response.data;
   },
 };
-
-export default productsAPI;
