@@ -1,46 +1,140 @@
-# Getting Started with Create React App
+# README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Описание проекта
 
-## Available Scripts
+Этот проект представляет собой React-приложение для интернет-магазина. Дизайн и макеты приложения готовы и доступны в Figma. Разработчики могут использовать этот репозиторий для начала работы над проектом.
 
-In the project directory, you can run:
+## Начало работы
 
-### `yarn start`
+### Требования
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Node.js >= 18.x
+- npm или Yarn
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Установка
 
-### `yarn test`
+1. Склонируйте репозиторий:
+   ```bash
+   git@github.com:motion-kg/e-shop.git
+   ```
+2. Перейдите в директорию проекта:
+   ```bash
+   cd e-shop
+   ```
+3. Установите зависимости:
+   ```bash
+   npm install
+   ```
+   или
+   ```bash
+   yarn install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Запуск проекта
 
-### `yarn build`
+1. Запустите приложение в режиме разработки:
+   ```bash
+   npm start
+   ```
+   или
+   ```bash
+   yarn start
+   ```
+2. Откройте [http://localhost:3000](http://localhost:3000) в вашем браузере, чтобы увидеть результат.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Использование fakeStoreApi
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Для имитации данных интернет-магазина используется API **fakeStoreApi**, которое предоставляет данные в формате JSON. API может быть использовано для продуктов, корзин и пользователей.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Примеры использования API
 
-### `yarn eject`
+#### Продукты
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Получить все продукты:
+  ```javascript
+  fetch('https://fakestoreapi.com/products')
+    .then(res => res.json())
+    .then(json => console.log(json));
+  ```
+- Получить один продукт:
+  ```javascript
+  fetch('https://fakestoreapi.com/products/1')
+    .then(res => res.json())
+    .then(json => console.log(json));
+  ```
+- Ограничить результаты:
+  ```javascript
+  fetch('https://fakestoreapi.com/products?limit=5')
+    .then(res => res.json())
+    .then(json => console.log(json));
+  ```
+- Сортировка результатов:
+  ```javascript
+  fetch('https://fakestoreapi.com/products?sort=desc')
+    .then(res => res.json())
+    .then(json => console.log(json));
+  ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Корзины
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Получить все корзины:
+  ```javascript
+  fetch('https://fakestoreapi.com/carts')
+    .then(res => res.json())
+    .then(json => console.log(json));
+  ```
+- Получить одну корзину:
+  ```javascript
+  fetch('https://fakestoreapi.com/carts/5')
+    .then(res => res.json())
+    .then(json => console.log(json));
+  ```
+- Ограничить результаты:
+  ```javascript
+  fetch('https://fakestoreapi.com/carts?limit=5')
+    .then(res => res.json())
+    .then(json => console.log(json));
+  ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### Пользователи
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Получить всех пользователей:
+  ```javascript
+  fetch('https://fakestoreapi.com/users')
+    .then(res => res.json())
+    .then(json => console.log(json));
+  ```
+- Получить одного пользователя:
+  ```javascript
+  fetch('https://fakestoreapi.com/users/1')
+    .then(res => res.json())
+    .then(json => console.log(json));
+  ```
+- Добавить нового пользователя:
+  ```javascript
+  fetch('https://fakestoreapi.com/users', {
+    method: "POST",
+    body: JSON.stringify({
+      email: 'John@gmail.com',
+      username: 'johnd',
+      password: 'm38rmF$',
+      name: {
+        firstname: 'John',
+        lastname: 'Doe'
+      },
+      address: {
+        city: 'kilcoole',
+        street: '7835 new road',
+        number: 3,
+        zipcode: '12926-3874',
+        geolocation: {
+          lat: '-37.3159',
+          long: '81.1496'
+        }
+      },
+      phone: '1-570-236-7033'
+    })
+  })
+  .then(res => res.json())
+  .then(json => console.log(json));
+  ```
